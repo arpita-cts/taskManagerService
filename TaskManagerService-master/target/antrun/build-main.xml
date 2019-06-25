@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="maven-antrun-" default="main"  >
+<target name="main">
+  <mkdir dir="C:\Users\Admin\Desktop\Final project\TaskManagerService-master\TaskManagerService-master/target/jmeter/results/dashboard"/>
+  <copy file="C:\Users\Admin\Desktop\Final project\TaskManagerService-master\TaskManagerService-master/src/test/resources/reportgenerator.properties" tofile="C:\Users\Admin\Desktop\Final project\TaskManagerService-master\TaskManagerService-master/target/jmeter/bin/reportgenerator.properties"/>
+  <copy todir="C:\Users\Admin\Desktop\Final project\TaskManagerService-master\TaskManagerService-master/target/jmeter/bin/report-template">
+    <fileset dir="C:\Users\Admin\Desktop\Final project\TaskManagerService-master\TaskManagerService-master/src/test/resources/report-template"/>
+  </copy>
+  <java fork="true" jar="C:\Users\Admin\Desktop\Final project\TaskManagerService-master\TaskManagerService-master/target/jmeter/bin/ApacheJMeter-3.0.jar">
+    <arg value="-g"/>
+    <arg value="C:\Users\Admin\Desktop\Final project\TaskManagerService-master\TaskManagerService-master/target/jmeter/results/*.jtl"/>
+    <arg value="-o"/>
+    <arg value="C:\Users\Admin\Desktop\Final project\TaskManagerService-master\TaskManagerService-master/target/jmeter/results/dashboard/"/>
+  </java>
+</target>
+</project>
