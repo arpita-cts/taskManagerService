@@ -10,40 +10,68 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="task")
 public class Task implements Serializable{
-	private static final long serialVersionUTD =1L;
+	private static final long serialVersionUID = 8907785850151451137L;
+	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="task_id")
-	int taskId;
+	Integer taskId;
+	
 	@JoinColumn(name="parent_id")
-	@ManyToOne(cascade=CascadeType.ALL)
+	@OneToOne
 	ParentTask parent;
+	
+//	int parent_id;
 	@Column(name="task")
 	String task;
+	
 	@Column(name="start_date")
 	String startDate;
+	
 	@Column(name="end_date")
 	String endDate;
+	
 	@Column(name="priority")
 	int priority;
+	
 	@Column(name="delete_flag")
 	int deleteFlag;
 	
+	@JoinColumn(name="project_id")
+	@OneToOne
+	Project project;
+	
+	@Column(name="status")
+	String status;
+	
+	public Project getProject() {
+		return project;
+	}
+	public void setProject(Project project) {
+		this.project = project;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	public int getDeleteFlag() {
 		return deleteFlag;
 	}
 	public void setDeleteFlag(int deleteFlag) {
 		this.deleteFlag = deleteFlag;
 	}
-	public int getTaskId() {
+	public Integer getTaskId() {
 		return taskId;
 	}
-	public void setTaskId(int taskId) {
+	public void setTaskId(Integer taskId) {
 		this.taskId = taskId;
 	}
 	
@@ -53,9 +81,16 @@ public class Task implements Serializable{
 	public void setParent(ParentTask parent) {
 		this.parent = parent;
 	}
+	
 	public String getTask() {
 		return task;
 	}
+//	public int getParent_id() {
+//		return parent_id;
+//	}
+//	public void setParent_id(int parent_id) {
+//		this.parent_id = parent_id;
+//	}
 	public void setTask(String task) {
 		this.task = task;
 	}
@@ -77,9 +112,5 @@ public class Task implements Serializable{
 	public void setPriority(int priority) {
 		this.priority = priority;
 	}
-	public static long getSerialversionutd() {
-		return serialVersionUTD;
-	}
-	
 
 }
